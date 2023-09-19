@@ -1,5 +1,18 @@
 <?php
 
+$config = [
+    'database' => [
+        'host' => 'example.com',
+        'port' => 3306,
+        'dbname' => 'gym_builder',
+        'charset' => 'utf8mb4'
+    ],
+    "user" => "root",
+    "password" => "",
+    // The rest of config array ...
+];
+
+return $config;
 
 // $config = [
 //     'database' => [
