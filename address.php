@@ -38,9 +38,18 @@ switch ($method) {
       // Return the data as JSON using json_encode()
       echo json_encode($data);
     } else {
-      // Return an error message
-      http_response_code(404); // Not found
-      echo json_encode(array("message" => "No addresses found"));
+      // Return an empty address object
+      header ('Content-Type: application/json');
+      echo json_encode(array(
+        "address_id" => "",
+        "user_id" => "",
+        "address_line1" => "",
+        "address_line2" => "",
+        "city" => "",
+        "country" => "",
+        "postal_code" => "",
+        "phone_number" => ""
+      ));
     }
     break;
 
