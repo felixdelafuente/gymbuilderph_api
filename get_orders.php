@@ -1,17 +1,19 @@
 <?php
+
 // Include the database connection code
 include 'db.php';
 
-// Prepare a SQL statement to get all the data from the orderitems table
-$sql = "SELECT * FROM orderitems";
+// Prepare a SQL statement to join the orderitems and orders tables by order_id
+$sql = "SELECT orderitems.*, orders.* FROM orderitems INNER JOIN orders ON orderitems.order_id = orders.order_id";
 
-// Execute the statement and fetch the data as an associative array
-$stmt = $pdo->query($sql);
-$orderitems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Execute the statement without any parameters
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
 
-// Set the header to JSON content type
+// Fetch all the results as an associative array
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Encode the results as a JSON string and send it as a response
 header('Content-Type: application/json');
-
-// Encode the data as a JSON string and send it as a response
-echo json_encode($orderitems);
+echo json_encode($results);
 ?>

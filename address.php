@@ -40,7 +40,7 @@ switch ($method) {
     } else {
       // Return an empty address object
       header ('Content-Type: application/json');
-      echo json_encode(array(
+      echo json_encode(array(array(
         "address_id" => "",
         "user_id" => "",
         "address_line1" => "",
@@ -49,7 +49,7 @@ switch ($method) {
         "country" => "",
         "postal_code" => "",
         "phone_number" => ""
-      ));
+      )));
     }
     break;
 
